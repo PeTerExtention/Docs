@@ -16,8 +16,7 @@ pause_resume: "<:playresume:1070815846315859998>",
       
       git commit -m "first commit"
       
-      git remote add origin https://github.com/PeTer344-dot/Musico.git
-git push -u origin main
+   
       
       
       
