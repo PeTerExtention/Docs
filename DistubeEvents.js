@@ -107,23 +107,24 @@ module.exports = async (client) => {
           embeds: [
             new EmbedBuilder()
               .setColor(client.config.embed.color)
-              .setDescription(`** [\`${song.name}\`](${song.url}) **`)
+              .setAuthor({
+                name: `NowPlaying`,
+                iconURL: client.user.displayAvatarURL({ dynamic: true }),
+                url: song.url,
+              })
+              .setThumbnail(song.thumbnail)
+              .setDescription(`[\`${song.name}\`](${song.url})`)
               .addFields([
                 {
-                  name: `Requested By`,
+                  name: `<:people:1074797172190609488> Song By`,
                   value: `\`${song.user.tag}\``,
                   inline: true,
                 },
                 {
-                  name: `Author`,
-                  value: `\`${song.uploader.name}\``,
-                  inline: true,
-                },
-                {
-                  name: `Duration`,
+                  name: `<:timer:1074797598403199076> Duration`,
                   value: `\`${song.formattedDuration}\``,
                   inline: true,
-                },
+                }
               ])
               .setFooter(client.getFooter(song.user)),
           ],
@@ -154,7 +155,7 @@ module.exports = async (client) => {
               .setDescription(`[\`${song.name}\`](${song.url})`)
               .addFields([
                 {
-                  name: `Requested By`,
+                  name: `Song By`,
                   value: `\`${song.user.tag}\``,
                   inline: true,
                 },
