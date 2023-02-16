@@ -1,14 +1,13 @@
-const { Message } = require("discord.js");
+const { Message, PermissionFlagsBits, ButtonBuilder, EmbedBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const JUGNU = require("../../../handlers/Client");
 const { Queue } = require("distube");
-const { links } = require("../../../settings/config");
 
 module.exports = {
   name: "vote",
-  aliases: ["vo", "v"],
-  description: `Help me to Grow up By Voting`,
-  userPermissions: ["SEND_MESSAGES"],
-  botPermissions: ["EMBED_LINKS"],
+  aliases: ["v", "top.gg", "Top.gg"],
+  description: `Vote For Musico !`,
+  userPermissions: PermissionFlagsBits.SendMessages,
+  botPermissions: PermissionFlagsBits.EmbedLinks,
   category: "Information",
   cooldown: 5,
   inVoiceChannel: false,
@@ -26,9 +25,21 @@ module.exports = {
    */
   run: async (client, message, args, prefix, queue) => {
     // Code
-    client.embed(
-      message,
-      `<:Discord_Inbox:1071901344069337118>[\`Vote Me On Top.gg\`](https://top.gg/bot/810540985032900648?s=0ccd00208d573)`
+    const row = new ActionRowBuilder()
+    .addComponents(
+      new ButtonBuilder()
+        .setURL('https://www.paypal.com/paypalme/musico541')
+        .setEmoji('<:topgg:1075574316151881800>')
+        .setLabel('Vote Me On Top.gg')
+        .setStyle(ButtonStyle.Link),
     );
+
+      const embed = new EmbedBuilder()
+			.setColor(client.config.embed.color)
+			.setTitle('Vote For Musico !')
+			.setURL('https://discord.gg/9cAXP5j5Rc')
+			.setDescription('Click on the Button to Vote for Musico !');
+
+      await message.reply({ ephemeral: true, embeds: [embed], components: [row] });
   },
 };
