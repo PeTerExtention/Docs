@@ -36,7 +36,7 @@ module.exports = {
     const row = new ActionRowBuilder()
     .addComponents(
       new ButtonBuilder()
-        .setURL('https://www.top.gg')
+        .setURL('https://top.gg/bot/810540985032900648?s=0ccd00208d573')
         //.setEmoji('<:topgg:1075574316151881800>')
         .setLabel('Vote Me On Top.gg')
         .setStyle(ButtonStyle.Link),
