@@ -1,14 +1,21 @@
-const { Message } = require("discord.js");
+const {
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  PermissionFlagsBits,
+  ComponentType,
+  Message,
+} = require("discord.js");
 const JUGNU = require("../../../handlers/Client");
 const { Queue } = require("distube");
-const { links } = require("../../../settings/config");
 
 module.exports = {
   name: "donate",
-  aliases: ["dn", "d"],
-  description: `Support me by donating!`,
-  userPermissions: ["SEND_MESSAGES"],
-  botPermissions: ["EMBED_LINKS"],
+  aliases: ["d", "dn", "do"],
+  description: `DONATE`,
+  userPermissions: PermissionFlagsBits.SendMessages,
+  botPermissions: PermissionFlagsBits.EmbedLinks,
   category: "Information",
   cooldown: 5,
   inVoiceChannel: false,
@@ -26,9 +33,21 @@ module.exports = {
    */
   run: async (client, message, args, prefix, queue) => {
     // Code
-    client.embed(
-      message,
-      `<:PayPal_Logo:1071892437926162492>[\`Donate Me On Paypal\`](https://www.paypal.me/musico541)`
+    const row = new ActionRowBuilder()
+    .addComponents(
+      new ButtonBuilder()
+        .setURL('https://www.paypal.com/paypalme/musico541')
+        .setEmoji('<:PayPal_Logo:1071892437926162492>')
+        .setLabel('Donate Me')
+        .setStyle(ButtonStyle.Link),
     );
+
+      const embed = new EmbedBuilder()
+			.setColor(client.config.embed.color)
+			.setTitle('Thanks For Donate !')
+			.setURL('https://discord.gg/9cAXP5j5Rc')
+			.setDescription('Done Donate? Join Community Server For Reward Role!');
+
+      await message.reply({ ephemeral: true, embeds: [embed], components: [row] });
   },
 };
